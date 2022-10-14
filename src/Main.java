@@ -7,8 +7,6 @@ import java.util.Scanner;
 
 public class Main {
 
-    List<Contact> contacts = new ArrayList<>();
-
     public static void showMenu() {
         System.out.println("1. View contacts.");
         System.out.println("2. Add a new contact.");
@@ -18,8 +16,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        showMenu();
-    }
+        ArrayList<Contact> contacts = new ArrayList<>();
 
+    }
 }
