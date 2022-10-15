@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Contact {
@@ -38,7 +39,7 @@ public class Contact {
     }
 
     // Method to SHOW ALL contacts.
-    public static void showAllContacts(ArrayList<Contact> contacts) {
+    public static void showAllContacts(List<Contact> contacts) {
         System.out.println("-- View Contacts --");
         System.out.println("Name | Phone Number");
         System.out.println("-------------------");
@@ -50,7 +51,7 @@ public class Contact {
     }
 
     // Method to ADD contact.
-    public static ArrayList addContact(ArrayList contacts) {
+    public static List addContact(List contacts) {
         Scanner input = new Scanner(System.in);
 
         System.out.println("Enter your first name: ");
@@ -70,7 +71,7 @@ public class Contact {
     }
 
     // Method to SEARCH FOR contact.
-    public static void searchForContact(ArrayList<Contact> contacts) {
+    public static void searchForContact(List<Contact> contacts) {
         Scanner input = new Scanner(System.in);
 
         System.out.println("-- Search a contact by name --");
@@ -91,7 +92,7 @@ public class Contact {
     }
 
     // Method to DELETE contact.
-    public static void deleteContact(ArrayList<Contact> contacts) {
+    public static void deleteContact(List<Contact> contacts) {
         // TODO SOMETHING TO LOOK FOR: MAYBE RETURN ARRAY AFTER METHOD DELETES CONTACT.
 
         Scanner input = new Scanner(System.in);

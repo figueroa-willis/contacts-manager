@@ -20,15 +20,14 @@ public class ContactsTest {
     }
 
     public static void main(String[] args) throws IOException {
-        Scanner input = new Scanner(System.in);
-        ArrayList<Contact> contacts = new ArrayList<>();
+        List<Contact> contacts = new ArrayList<>();
 
         String file = "contacts.txt";
         Path filepath = Paths.get("contacts.txt");
         Files.write(filepath, Arrays.asList("Test"));
 
         // TODO: WRITE LIST OF CONTACTS TO CONTACTS.TXT FILE
-
+        Contact.showAllContacts(contacts);
         showMenu();
         // TODO: Refactor if statement inside do while to switch
         do {
