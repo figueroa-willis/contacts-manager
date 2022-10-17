@@ -1,4 +1,10 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Contact {
@@ -120,6 +126,31 @@ public class Contact {
                 }
             }
             break;
+        }
+    }
+    public static void writeToFile(ArrayList <Contact> contacts) throws IOException {
+        Path filepath = Paths.get("contacts.txt");
+        ArrayList<String> contactList  = (ArrayList<String>) Files.readAllLines(filepath);
+        int i = 0;
+        String stringify_contact = contacts.get(i).firstName + " " + contacts.get(i).lastName + " | " + contacts.get(i).phoneNumber;
+        Files.write(filepath, Arrays.asList(stringify_contact), StandardOpenOption.APPEND);
+    }
+
+
+    public static void readFromFile(ArrayList<Contact> contacts)  throws IOException {
+        Path filepath = Paths.get("contacts.txt");
+        ArrayList<String> contactList  = (ArrayList<String>) Files.readAllLines(filepath);
+        for(int i = 0; i < contactList.size(); ++i){
+            String name = contactList.get(i).substring(0, contactList.get(i).indexOf("|"));
+            String firstName = name.substring(0, name.indexOf(" "));
+            String lastName = name.substring(name.indexOf(" "), name.lastIndexOf(""));
+            lastName = lastName.trim();
+            String phoneNumber = contactList.get(i).substring(contactList.get(i).indexOf("|"), contactList.get(i).lastIndexOf(""));
+            phoneNumber = phoneNumber.substring(phoneNumber.indexOf(" "), phoneNumber.lastIndexOf(""));
+            phoneNumber = phoneNumber.trim();
+            Contact contact = new Contact(firstName, lastName, Long.parseLong(phoneNumber));
+            System.out.println(contact.firstName);
+            contacts.add(contact);
         }
     }
 }

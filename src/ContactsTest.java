@@ -7,7 +7,6 @@ import java.util.*;
 public class ContactsTest {
 
     public static int usersOption;
-    // test push
     public static void showMenu() {
         Scanner input = new Scanner(System.in);
         System.out.println("1. View contacts.");
@@ -22,10 +21,7 @@ public class ContactsTest {
     public static void main(String[] args) throws IOException {
         Scanner input = new Scanner(System.in);
         ArrayList<Contact> contacts = new ArrayList<>();
-
-        String file = "contacts.txt";
-        Path filepath = Paths.get("contacts.txt");
-        Files.write(filepath, Arrays.asList("Test"));
+        Contact.readFromFile(contacts);
 
         // TODO: WRITE LIST OF CONTACTS TO CONTACTS.TXT FILE
 
@@ -46,6 +42,7 @@ public class ContactsTest {
                 showMenu();
             } else if (usersOption == 5) {
                 System.out.println("Goodbye...");
+                Contact.writeToFile(contacts);
                 break;
             }
         } while (true);
