@@ -7,7 +7,7 @@ import java.util.*;
 public class ContactsTest {
 
     public static int usersOption;
-
+    // test push
     public static void showMenu() {
         Scanner input = new Scanner(System.in);
         System.out.println("1. View contacts.");
