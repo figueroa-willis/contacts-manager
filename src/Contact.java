@@ -1,4 +1,11 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Contact {
@@ -46,7 +53,7 @@ public class Contact {
             System.out.printf("%s %s | %d%n", contact.getFirstName(), contact.getLastName(), contact.getPhoneNumber());
         }
         // Creating space between contacts and menu with extra print lines
-        System.out.println("\n\n");
+//        System.out.println("\n\n");
     }
 
     // Method to ADD contact.
@@ -122,6 +129,64 @@ public class Contact {
             break;
         }
     }
-}
+    public static void readFromFile(ArrayList<Contact> contacts) throws IOException {
+        String file = "contacts.txt";
+        Path contactListPath = Paths.get(file);
+        List<String> contactList = Files.readAllLines(contactListPath);
+        for (String line : contactList){
+            System.out.println(line);
+//        for (int i = 0; i < contactList.size(); ++i) {
+////            System.out.println((i + 1) + ": " + contactList.get(i));
+//            String name = contactList.get(i).substring(0, contactList.get(i).indexOf("|"));
+//            String first_name = contactList.get(i).substring(0, contactList.get(i).indexOf(" "));
+//            String last_name = contactList.get(i).substring(name.indexOf(" "), name.lastIndexOf(" "));
+//            String phone_number = contactList.get(i).substring(contactList.get(i).indexOf("|"), contactList.get(i).lastIndexOf(""));
+//            phone_number = phone_number.substring(1, phone_number.lastIndexOf(""));
+//            phone_number = phone_number.trim();
+//            first_name = first_name.trim();
+//            last_name = last_name.trim();
+//            Contact contact = new Contact(first_name, last_name, Long.parseLong(phone_number));
+//            contacts.add(contact);
 
+        }
+    }
+    public static void addFileToMemory(ArrayList<Contact> contacts) throws IOException {
+        String file = "contacts.txt";
+        Path contactListPath = Paths.get(file);
+        List<String> contactList = Files.readAllLines(contactListPath);
+//        List<String> contactList  = (ArrayList<String>) Files.readAllLines(contactListPath);
+        for (String line : contactList) {
+            System.out.println(line);
+//            System.out.println((i + 1) + ": " + contactList.get(i));
+            String name = line.substring(0, contacts.indexOf("|"));
+            String first_name = name.substring(0, name.indexOf(" "));
+            String last_name = name.substring(name.indexOf(" "), name.lastIndexOf(""));
+            String phone_number = line.substring(line.indexOf("|"), line.lastIndexOf(""));
+            phone_number = phone_number.substring(phone_number.charAt(1), phone_number.lastIndexOf(""));
+            phone_number = phone_number.trim();
+            first_name = first_name.trim();
+            last_name = last_name.trim();
+            Contact contact = new Contact(first_name, last_name, Long.parseLong(phone_number));
+            contacts.add(contact);
+        }
+    }
+    public static void writeToFile(ArrayList<Contact> contacts) throws IOException {
+        String file = "contacts.txt";
+        Path filepath = Paths.get(file);
+        String stringContact;
+        ArrayList<String> contactList  = (ArrayList<String>) Files.readAllLines(filepath);
+        int i = 0;
+        for (Contact contact: contacts){
+            stringContact = contact.getFirstName() + " " + contact.getLastName() + " | " + contact.getPhoneNumber();
+            if(stringContact.equalsIgnoreCase(contactList.get(i))){
+                System.out.println("These two are equal, SHOULD NOT ADD");
+                continue;
+            }else {
+                System.out.println("ADDING " + stringContact + "to text file");
+                Files.write(filepath, Arrays.asList(stringContact), StandardOpenOption.APPEND);
+            }
+            ++i;
+        }
+    }
+}
 

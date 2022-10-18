@@ -23,20 +23,21 @@ public class ContactsTest {
         Scanner input = new Scanner(System.in);
         ArrayList<Contact> contacts = new ArrayList<>();
 
-        String file = "contacts.txt";
-        Path filepath = Paths.get("contacts.txt");
-        Files.write(filepath, Arrays.asList("Test"));
-
         // TODO: WRITE LIST OF CONTACTS TO CONTACTS.TXT FILE
 
         showMenu();
         // TODO: Refactor if statement inside do while to switch
         do {
+
             if (usersOption == 1) {
                 Contact.showAllContacts(contacts);
+                Contact.readFromFile(contacts);
+//                Contact.addFileToMemory(contacts);
                 showMenu();
             } else if (usersOption == 2) {
                 Contact.addContact(contacts);
+//                Contact.readFromFile(contacts);1
+//                Contact.writeToFile(contacts);
                 showMenu();
             } else if (usersOption == 3) {
                 Contact.searchForContact(contacts);
@@ -46,6 +47,7 @@ public class ContactsTest {
                 showMenu();
             } else if (usersOption == 5) {
                 System.out.println("Goodbye...");
+                Contact.writeToFile(contacts);
                 break;
             }
         } while (true);
