@@ -33,6 +33,7 @@ public class ContactsTest {
         do {
             if (usersOption == 1) {
                 Contact.showAllContacts(contacts);
+                Contact.readToFile(contacts);
                 showMenu();
             } else if (usersOption == 2) {
                 Contact.addContact(contacts);
@@ -45,6 +46,7 @@ public class ContactsTest {
                 showMenu();
             } else if (usersOption == 5) {
                 System.out.println("Goodbye...");
+                Contact.writeToFile(contacts);
                 break;
             }
         } while (true);

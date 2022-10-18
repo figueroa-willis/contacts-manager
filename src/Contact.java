@@ -1,4 +1,11 @@
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -123,4 +130,24 @@ public class Contact {
             break;
         }
     }
+    public static void readToFile(List<Contact> contacts) throws IOException {
+        String file = "contacts.txt";
+        Path contactListPath = Paths.get(file);
+        List<String> contactList = Files.readAllLines(contactListPath);
+        for(String line: contactList){
+            System.out.println(line);
+        }
+    }
+    public static void writeToFile(List<Contact> contacts) throws IOException {
+        String file = "contacts.txt";
+        Path contactListPath = Paths.get(file);
+        List<String> contactList = Files.readAllLines(contactListPath);
+        String contacts_to_string;
+        for (Contact contact : contacts){
+            contacts_to_string = contact.firstName + " " + contact.lastName + " | " + contact.phoneNumber;
+            Files.write(Paths.get(file), Arrays.asList(contacts_to_string), StandardOpenOption.APPEND);
+        }
+    }
+
+
 }
