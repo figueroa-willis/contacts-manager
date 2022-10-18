@@ -7,6 +7,7 @@ import java.util.*;
 public class ContactsTest {
 
     public static int usersOption;
+
     public static void showMenu() {
         Scanner input = new Scanner(System.in);
         System.out.println("1. View contacts.");
@@ -21,18 +22,22 @@ public class ContactsTest {
     public static void main(String[] args) throws IOException {
         Scanner input = new Scanner(System.in);
         ArrayList<Contact> contacts = new ArrayList<>();
-        Contact.readFromFile(contacts);
 
         // TODO: WRITE LIST OF CONTACTS TO CONTACTS.TXT FILE
 
         showMenu();
         // TODO: Refactor if statement inside do while to switch
         do {
+
             if (usersOption == 1) {
                 Contact.showAllContacts(contacts);
+                Contact.readFromFile(contacts);
+//                Contact.addFileToMemory(contacts);
                 showMenu();
             } else if (usersOption == 2) {
                 Contact.addContact(contacts);
+//                Contact.readFromFile(contacts);1
+//                Contact.writeToFile(contacts);
                 showMenu();
             } else if (usersOption == 3) {
                 Contact.searchForContact(contacts);
