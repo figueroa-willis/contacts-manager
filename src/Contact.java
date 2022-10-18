@@ -1,3 +1,6 @@
+
+import java.io.File;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -45,7 +48,7 @@ public class Contact {
     }
 
     // Method to SHOW ALL contacts.
-    public static void showAllContacts(ArrayList<Contact> contacts) {
+    public static void showAllContacts(List<Contact> contacts) {
         System.out.println("-- View Contacts --");
         System.out.println("Name | Phone Number");
         System.out.println("-------------------");
@@ -57,7 +60,7 @@ public class Contact {
     }
 
     // Method to ADD contact.
-    public static ArrayList addContact(ArrayList contacts) {
+    public static List addContact(List contacts) {
         Scanner input = new Scanner(System.in);
 
         System.out.println("Enter your first name: ");
@@ -77,7 +80,7 @@ public class Contact {
     }
 
     // Method to SEARCH FOR contact.
-    public static void searchForContact(ArrayList<Contact> contacts) {
+    public static void searchForContact(List<Contact> contacts) {
         Scanner input = new Scanner(System.in);
 
         System.out.println("-- Search a contact by name --");
@@ -98,7 +101,7 @@ public class Contact {
     }
 
     // Method to DELETE contact.
-    public static void deleteContact(ArrayList<Contact> contacts) {
+    public static void deleteContact(List<Contact> contacts) {
         // TODO SOMETHING TO LOOK FOR: MAYBE RETURN ARRAY AFTER METHOD DELETES CONTACT.
 
         Scanner input = new Scanner(System.in);
@@ -129,6 +132,7 @@ public class Contact {
             break;
         }
     }
+
     public static void readFromFile(ArrayList<Contact> contacts) throws IOException {
         String file = "contacts.txt";
         Path contactListPath = Paths.get(file);
@@ -188,5 +192,25 @@ public class Contact {
             ++i;
         }
     }
+
+    public static void readToFile(List<Contact> contacts) throws IOException {
+        String file = "contacts.txt";
+        Path contactListPath = Paths.get(file);
+        List<String> contactList = Files.readAllLines(contactListPath);
+        for(String line: contactList){
+            System.out.println(line);
+        }
+    }
+    public static void writeToFile(List<Contact> contacts) throws IOException {
+        String file = "contacts.txt";
+        Path contactListPath = Paths.get(file);
+        List<String> contactList = Files.readAllLines(contactListPath);
+        String contacts_to_string;
+        for (Contact contact : contacts){
+            contacts_to_string = contact.firstName + " " + contact.lastName + " | " + contact.phoneNumber;
+            Files.write(Paths.get(file), Arrays.asList(contacts_to_string), StandardOpenOption.APPEND);
+        }
+    }
+
 }
 

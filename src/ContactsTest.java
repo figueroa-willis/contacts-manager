@@ -20,11 +20,10 @@ public class ContactsTest {
     }
 
     public static void main(String[] args) throws IOException {
-        Scanner input = new Scanner(System.in);
-        ArrayList<Contact> contacts = new ArrayList<>();
+        List<Contact> contacts = new ArrayList<>();
 
         // TODO: WRITE LIST OF CONTACTS TO CONTACTS.TXT FILE
-
+        Contact.showAllContacts(contacts);
         showMenu();
         // TODO: Refactor if statement inside do while to switch
         do {
@@ -33,6 +32,9 @@ public class ContactsTest {
                 Contact.showAllContacts(contacts);
                 Contact.readFromFile(contacts);
 //                Contact.addFileToMemory(contacts);
+
+                Contact.readToFile(contacts);
+
                 showMenu();
             } else if (usersOption == 2) {
                 Contact.addContact(contacts);
