@@ -27,19 +27,12 @@ public class ContactsTest {
         showMenu();
         // TODO: Refactor if statement inside do while to switch
         do {
-
             if (usersOption == 1) {
                 Contact.showAllContacts(contacts);
-                Contact.readFromFile(contacts);
-//                Contact.addFileToMemory(contacts);
-
                 Contact.readToFile(contacts);
-
                 showMenu();
             } else if (usersOption == 2) {
                 Contact.addContact(contacts);
-//                Contact.readFromFile(contacts);1
-//                Contact.writeToFile(contacts);
                 showMenu();
             } else if (usersOption == 3) {
                 Contact.searchForContact(contacts);
@@ -49,7 +42,7 @@ public class ContactsTest {
                 showMenu();
             } else if (usersOption == 5) {
                 System.out.println("Goodbye...");
-                Contact.writeToFile(contacts);
+                Contact.writeToFile((ArrayList<Contact>) contacts);
                 break;
             }
         } while (true);
